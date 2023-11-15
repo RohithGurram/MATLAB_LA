@@ -1,0 +1,22 @@
+exp-08
+M = 16;
+nfft = 64;
+cplen = [16 32];
+nSym=2;
+dataSym = randi([0 M-1],nfft,nSym);
+qamSig=qammod(dataSym,M, UnitAveragePower=true);
+y1 =ofdmmod(qamSig, nfft, cplen);
+x1=ofdmdemod(y1,nfft, cplen);
+rxData=qamdemod(x1,M, UnitAveragePower=true);
+subplot(4,1,1);
+plot(dataSym);
+title("Input");
+subplot(4,1,2);
+plot(y1);
+title("Transmitted ");
+subplot(4,1,3);
+plot(x1);
+title("received"); 
+subplot(4,1,4);
+plot(rxData);
+title("Demodulated");
