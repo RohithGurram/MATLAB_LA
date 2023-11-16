@@ -25,8 +25,8 @@ sf1=sf1/sqrt(E1);
 %PSK
 sp=sin(2*pi*f1*t);
 E1=sum(sp.^2);
-sp0=-sin(2*pi*f1*t)/sqrt(E1);
-sp1=sin(2*pi*f1*t)/sqrt(E1);
+sp0=-sp/sqrt(E1);
+sp1=sp/sqrt(E1);
 
 %MODULATION
 ask=[];psk=[];fsk=[];
@@ -44,24 +44,14 @@ end
 
 figure(1)
 subplot(411)
-stairs(0:10,[b(1:10) b(10)],'linewidth',1.5)
-axis([0 10 -0.5 1.5])
-title('Message Bits');grid on
-xlabel('Time');ylabel('Amplitude')
+stairs(0:10,[b(1:10) b(10)]);
 
 subplot(412)
 tb=0:1/30:10-1/30;
-plot(tb, ask(1:10*30),'b','linewidth',1.5)
-title('ASK Modulation');grid on
-xlabel('Time');ylabel('Amplitude')
+plot(tb, ask(1:10*30));
 
 subplot(413)
-plot(tb, fsk(1:10*30),'r','linewidth',1.5)
-title('FSK Modulation');grid on
-xlabel('Time');ylabel('Amplitude');
+plot(tb, fsk(1:10*30));
 
 subplot(414)
-plot(tb, psk(1:10*30),'k','linewidth',1.5)
-title('PSK Modulation');grid on
-xlabel('Time');
-ylabel('Amplitude');
+plot(tb, psk(1:10*30));
